@@ -11,7 +11,7 @@ const users = [{
 }];
 
 function findUser(username) {
-    return users.find(item => item.users);
+    return users.find(item => item.username === username);
 };
 
 function findUserById(id) {
