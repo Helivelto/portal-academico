@@ -19,15 +19,15 @@ function findUserById(id) {
 };
 
 
-// serializeUser => uma vez autenticado ele salva um cookie no fromt e uma sessão no back.
-
 module.exports = (passport) => {
 
+    // serializeUser => uma vez autenticado ele salva um cookie no fromt e uma sessão no back.
     passport.serializeUser((user, done) => {
         done(null, user._id);
     })
 
-    // deserializeUser => recupera as de,aos informações do objesto através do "id" 
+
+    // deserializeUser => Uma vez que as informações estão gravadas, posso recuperá-las 
     passport.deserializeUser((id, done) => {
         try {
             const user = findUserById(id);
@@ -39,7 +39,22 @@ module.exports = (passport) => {
     })
 
     passport.use(new LocalStrategy({
-        
+        username: 'username',
+        password: 'password'
+    }, (username, password, done) => {
+        try {
+            const user = findUser(username);
+
+            if(!user) return done(null, false);
+
+            const isValid = bcrypt.compareSync(password, user.password);
+            if(!isValid) return done(null, false);
+            return (done(null, user));
+
+        } catch (error) {
+            console.log(error);
+            return done(error, false);
+        }
     }))
 
-}
+};
