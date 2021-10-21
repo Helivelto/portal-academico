@@ -1,4 +1,4 @@
-const bcrypt = require('bryptjs');
+const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 
 // https://bcrypt-generator.com/
