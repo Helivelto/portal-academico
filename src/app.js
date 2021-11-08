@@ -8,6 +8,15 @@ const passport = require('passport');
 const session = require('express-session');
 require('./auth')(passport);
 
+
+function authenticationMiddleware(req, res, next){
+  
+  if(req.isAuthenticated()) return next();
+  res.redirect('/login');
+
+};
+
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/loginRoutes');
@@ -33,14 +42,14 @@ app.use(express.static(path.join(__dirname, 'public')));
     cookie: {maxAge: 2 * 60 * 1000} // 2min
   }));
 
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(passport.initialize())
+  app.use(passport.session())
 
 // fim
 
+app.use('/users', authenticationMiddleware, usersRouter);
 app.use('/login', loginRouter);
-app.use('/index', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', authenticationMiddleware, indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

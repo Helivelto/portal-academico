@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 
 /* POST Login page. */
 router.post('/', passport.authenticate('local', {
-  successRedirect: '/index',
+  successRedirect: '/',
   failureRedirect: '/login?fail=true'
 }));
 
