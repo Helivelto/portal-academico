@@ -24,3 +24,7 @@ Uma das estratégias do passport, utiliza para autencticação com o nome de usu
 ### express-session
 Quando o cliente faz uma solicitação de login no servidor, o servidor criará uma sessão 
 e armazenará no lado do servidor. Quando o servidor responde ao cliente, ele envia um cookie
+
+
+### Mysql 2
+npm i mysql2
