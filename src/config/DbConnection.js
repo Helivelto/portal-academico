@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require('mysql2')
 
 class DbConnection {
 
@@ -8,7 +8,7 @@ class DbConnection {
                 host: 'localhost',
                 user: 'root',
                 password: '12345678', //Senha da escola
-                database: 'academicodb_2b_15' // Banco de dados criado na escola
+                database: 'academicodb2bi' // Banco de dados criado na escola
             });
 
             this.conn.connect((error) => {
