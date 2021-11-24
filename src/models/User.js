@@ -12,9 +12,10 @@ class User {
         })
     }
 
-    findUsers(username) {
+    findUser(username) {
         return new Promisse((resolve, reject) => {
-            const sql = `SELECT * from usuarios WHERE email_usuario = ${username}`
+            const sql = `SELECT * from usuarios WHERE email_usuario = '${username}'`
+        
             DbConnection.connection().query(sql, (err, result) => {
                 if(err) reject(err)
                 resolve(result[0])
@@ -22,9 +23,9 @@ class User {
         })
     }
 
-    findUsers(id) {
+    findUserById(id) {
         return new Promisse((resolve, reject) => {
-            const sql = `SELECT * from usuarios WHERE id = ${id}`
+            const sql = `SELECT * from usuarios WHERE id = '${id}'`
             DbConnection.connection().query(sql, (err, result) => {
                 if(err) reject(err)
                 resolve(result[0])
