@@ -3,8 +3,8 @@ const DbConnection = require('../config/DbConnection');
 class User {
 
     findUsers() {
-        return new Promisse((resolve, reject) => {
-            const sql = `SELECT * from usuarios`
+        return new Promise((resolve, reject) => {
+            const sql = `SELECT * FROM usuarios`
             DbConnection.connection().query(sql, (err, result) => {
                 if(err) reject(err)
                 resolve(result)
@@ -13,18 +13,18 @@ class User {
     }
 
     findUser(username) {
-        return new Promisse((resolve, reject) => {
-            const sql = `SELECT * from usuarios WHERE email_usuario = '${username}'`
-        
+        return new Promise((resolve, reject) => {
+            const sql = `SELECT * FROM usuarios WHERE email_usuario = '${username}'`
             DbConnection.connection().query(sql, (err, result) => {
                 if(err) reject(err)
+                console.log(result)
                 resolve(result[0])
             })
         })
     }
 
     findUserById(id) {
-        return new Promisse((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const sql = `SELECT * from usuarios WHERE id = '${id}'`
             DbConnection.connection().query(sql, (err, result) => {
                 if(err) reject(err)

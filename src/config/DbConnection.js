@@ -7,7 +7,7 @@ class DbConnection {
             this.conn = mysql.createConnection({
                 host: 'localhost',
                 user: 'root',
-                password: '12345678', //Senha da escola
+                password: '', //Senha da escola 12345678
                 database: 'academicodb2bi' // Banco de dados criado na escola
             });
 

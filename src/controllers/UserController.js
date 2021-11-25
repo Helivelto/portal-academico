@@ -5,7 +5,7 @@ class UserController {
     async readAll(req, res) {
         try {
 
-            const reuslt = await User.findUsers()
+            const result = await User.findUsers()
             res.send(result)
 
         } catch (error) {
